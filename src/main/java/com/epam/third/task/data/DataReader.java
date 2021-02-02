@@ -30,10 +30,10 @@ public class DataReader {
     }
 
     private void closeResource(Closeable resource) throws DataException {
-        if(resource != null){
+        if (resource != null) {
             try {
                 resource.close();
-            } catch (IOException e){
+            } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);
                 throw new DataException(e.getMessage(), e);
             }

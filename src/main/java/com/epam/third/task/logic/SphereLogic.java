@@ -9,22 +9,22 @@ public class SphereLogic {
         return radius > 0;
     }
 
-    public boolean isTouchesCoordinatePlates(Sphere sphere){
+    public boolean isTouchesCoordinatePlates(Sphere sphere) {
         Point center = sphere.getCenter();
         double x = center.getX();
         double y = center.getY();
         double z = center.getZ();
         double radius = sphere.getRadius();
-        if(Math.abs(x) == radius){
+        if (Math.abs(x) == radius) {
             return true;
         }
-        if(Math.abs(y) == radius){
+        if (Math.abs(y) == radius) {
             return true;
         }
         return Math.abs(z) == radius;
     }
 
-    public double countVolume(Sphere sphere){
+    public double countVolume(Sphere sphere) {
         double radius = sphere.getRadius();
         double result = Math.pow(radius, 3);
         result *= Math.PI;
@@ -43,18 +43,18 @@ public class SphereLogic {
 
     //two of tree points coordinates should match radius coordinates
     //formula : ratio = 4R^3/(3h * (R - 1/3 * h) ) - 1
-    public double countVolumeRatioByCrossingPlane(Sphere sphere, double distanceFromCenter){
-        if(distanceFromCenter == 0){
+    public double countVolumeRatioByCrossingPlane(Sphere sphere, double distanceFromCenter) {
+        if (distanceFromCenter == 0) {
             return 1;
         }
         double radius = sphere.getRadius();
-        if(notBelongsToSphere(distanceFromCenter,radius)){
+        if (notBelongsToSphere(distanceFromCenter, radius)) {
             return Double.POSITIVE_INFINITY;
         }
         double ratio = Math.pow(radius, 3);
-        ratio *= 4./3.;
+        ratio *= 4. / 3.;
         ratio /= Math.pow(distanceFromCenter, 2);
-        ratio /= radius - 1./3. * distanceFromCenter;
+        ratio /= radius - 1. / 3. * distanceFromCenter;
         ratio--;
         return ratio;
     }

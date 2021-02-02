@@ -1,7 +1,5 @@
 package com.epam.third.task.entities;
 
-import java.util.Objects;
-
 public class Sphere {
 
     private final Point center;
@@ -12,8 +10,8 @@ public class Sphere {
         this.radius = radius;
     }
 
-    public Sphere( double radius, double x, double y, double z) {
-        this.center = new Point(x,y,z);
+    public Sphere(double radius, double x, double y, double z) {
+        this.center = new Point(x, y, z);
         this.radius = radius;
     }
 
@@ -35,6 +33,12 @@ public class Sphere {
 
     @Override
     public int hashCode() {
-        return Objects.hash(center, radius);
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((center == null) ? 0 : center.hashCode());
+        long temp;
+        temp = Double.doubleToLongBits(radius);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 }

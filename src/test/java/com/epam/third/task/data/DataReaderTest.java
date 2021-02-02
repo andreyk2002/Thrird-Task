@@ -20,23 +20,23 @@ public class DataReaderTest {
         //when
         List<String> actual = reader.readData(EMPTY_FILE);
         //then
-        List<String>expected = new ArrayList<>();
+        List<String> expected = new ArrayList<>();
         Assert.assertEquals(actual, expected);
     }
 
     @Test
-    public void testReadDataShouldReadWhenMultipleLinesFileApplied() throws DataException{
+    public void testReadDataShouldReadWhenMultipleLinesFileApplied() throws DataException {
         //then
         List<String> actual = reader.readData(TEST_FILE);
         //when
-        List<String>expected = Arrays.asList("1 2 3 4", "2", "3f 5a");
+        List<String> expected = Arrays.asList("1 2 3 4", "2", "3f 5a");
         Assert.assertEquals(actual, expected);
     }
 
     //then
     @Test(expectedExceptions = DataException.class)
-    public void testReadDataShouldThrowADataExceptionWhenFileNotFound() throws DataException{
+    public void testReadDataShouldThrowADataExceptionWhenFileNotFound() throws DataException {
         //when
-        List<String> actual = reader.readData(NOT_EXISTING_FILE);
+        reader.readData(NOT_EXISTING_FILE);
     }
 }

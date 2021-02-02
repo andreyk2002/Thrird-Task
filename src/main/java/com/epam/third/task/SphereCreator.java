@@ -12,7 +12,7 @@ import java.util.List;
 public class SphereCreator {
 
     private final DataReader reader;
-    private final SphereValidator  validator;
+    private final SphereValidator validator;
     private final SphereParser parser;
 
     public SphereCreator(DataReader reader, SphereValidator validator, SphereParser parser) {
@@ -24,8 +24,8 @@ public class SphereCreator {
     public List<Sphere> create(String filename) throws DataException {
         List<String> lines = reader.readData(filename);
         List<Sphere> createdSpheres = new ArrayList<>();
-        for(String line : lines){
-            if(validator.validate(line)){
+        for (String line : lines) {
+            if (validator.validate(line)) {
                 Sphere createdSphere = parser.parse(line);
                 createdSpheres.add(createdSphere);
             }

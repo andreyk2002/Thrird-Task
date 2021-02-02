@@ -19,15 +19,15 @@ import static org.mockito.Mockito.when;
 
 public class SphereCreatorTest {
 
-    private final String FILE_NAME = "";
-    private final String SPHERE_STRING = "3. -4 5 42.4242";
-    private final Sphere CREATED_SPHERE = new Sphere(3. , -4, 5,42.4242);
-    private final String FIRST_SPHERE_STRING ="1 2 3 4";
-    private final Sphere FIRST_SPHERE = new Sphere(1, 2, 3,4);
-    private final String SECOND_SPHERE_STRING = "2 2 2 2";
-    private final Sphere SECOND_SPHERE = new Sphere(2, 2, 2,2);
-    private final String THIRD_SPHERE_STRING = "42 42 42 42.42";
-    private final Sphere THIRD_SPHERE = new Sphere(42, 42, 42,42.42);
+    private static final String FILE_NAME = "";
+    private static final String SPHERE_STRING = "3. -4 5 42.4242";
+    private static final Sphere CREATED_SPHERE = new Sphere(3., -4, 5, 42.4242);
+    private static final String FIRST_SPHERE_STRING = "1 2 3 4";
+    private static final Sphere FIRST_SPHERE = new Sphere(1, 2, 3, 4);
+    private static final String SECOND_SPHERE_STRING = "2 2 2 2";
+    private static final Sphere SECOND_SPHERE = new Sphere(2, 2, 2, 2);
+    private static final String THIRD_SPHERE_STRING = "42 42 42 42.42";
+    private static final Sphere THIRD_SPHERE = new Sphere(42, 42, 42, 42.42);
 
     @Test
     public void testCreateShouldReturnEmptyListWhenItIsNothingToCreate() throws DataException {
@@ -46,8 +46,8 @@ public class SphereCreatorTest {
         //when
         List<Sphere> result = creator.create(FILE_NAME);
         //then
-        List<Sphere>expected = new ArrayList<>();
-        Assert.assertEquals(result,expected);
+        List<Sphere> expected = new ArrayList<>();
+        Assert.assertEquals(result, expected);
 
     }
 
@@ -69,15 +69,15 @@ public class SphereCreatorTest {
         //when
         List<Sphere> result = creator.create(FILE_NAME);
         //then
-        List<Sphere>expected = Collections.singletonList(CREATED_SPHERE);
-        Assert.assertEquals(result,expected);
+        List<Sphere> expected = Collections.singletonList(CREATED_SPHERE);
+        Assert.assertEquals(result, expected);
     }
 
     @Test
     public void testCreateShouldCreateWhenMoreThanOneSpheresNeededToBeCreated() throws DataException {
         //given
-        List<String>spheresString =
-                Arrays.asList(FIRST_SPHERE_STRING, SECOND_SPHERE_STRING,THIRD_SPHERE_STRING);
+        List<String> spheresString =
+                Arrays.asList(FIRST_SPHERE_STRING, SECOND_SPHERE_STRING, THIRD_SPHERE_STRING);
         DataReader reader = Mockito.mock(DataReader.class);
         when(reader.readData(anyString()))
                 .thenReturn(spheresString);
@@ -95,8 +95,8 @@ public class SphereCreatorTest {
         //when
         List<Sphere> result = creator.create(FILE_NAME);
         //then
-        List<Sphere>expected = Arrays.asList(FIRST_SPHERE, SECOND_SPHERE, THIRD_SPHERE);
-        Assert.assertEquals(result,expected);
+        List<Sphere> expected = Arrays.asList(FIRST_SPHERE, SECOND_SPHERE, THIRD_SPHERE);
+        Assert.assertEquals(result, expected);
     }
 
 }

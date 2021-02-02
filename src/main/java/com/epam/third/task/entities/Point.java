@@ -40,16 +40,16 @@ public class Point {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj == this){
+        if (obj == this) {
             return true;
         }
-        if(obj == null){
+        if (obj == null) {
             return false;
         }
-        if(obj.getClass() != Point.class){
+        if (obj.getClass() != Point.class) {
             return false;
         }
-        Point other = (Point)obj;
+        Point other = (Point) obj;
         return other.X == X && other.Y == Y && other.Z == Z;
     }
 }

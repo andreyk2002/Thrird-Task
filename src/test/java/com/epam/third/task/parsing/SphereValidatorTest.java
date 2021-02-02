@@ -17,9 +17,9 @@ public class SphereValidatorTest {
     private final static String TOO_MANY_ARGUMENTS = "2.5 6.66 42 42 42";
     private final static String NEGATIVE_RADIUS = "-1 0 2.32323 4";
 
-    
+
     @Test
-    public void testValidateShouldNotValidateWhenStringIsEmpty(){
+    public void testValidateShouldNotValidateWhenStringIsEmpty() {
         //when
         boolean isValid = validator.validate(EMPTY);
         //then
@@ -27,7 +27,7 @@ public class SphereValidatorTest {
     }
 
     @Test
-    public void testValidateShouldValidateWhenStringContainsOnlyIntegers(){
+    public void testValidateShouldValidateWhenStringContainsOnlyIntegers() {
         //when
         boolean isValid = validator.validate(VALID_INTEGER);
         //then
@@ -35,7 +35,7 @@ public class SphereValidatorTest {
     }
 
     @Test
-    public void testValidateShouldValidateWhenStringContainsOnlyDoubles(){
+    public void testValidateShouldValidateWhenStringContainsOnlyDoubles() {
         //when
         boolean isValid = validator.validate(VALID_DOUBLE);
         //then
@@ -43,7 +43,7 @@ public class SphereValidatorTest {
     }
 
     @Test
-    public void testValidateShouldValidateWhenStringContainsIntegersAndDouble(){
+    public void testValidateShouldValidateWhenStringContainsIntegersAndDouble() {
         //when
         boolean isValid = validator.validate(VALID_MIXED);
         //then
@@ -51,7 +51,7 @@ public class SphereValidatorTest {
     }
 
     @Test
-    public void testValidateShouldValidateWhenCoordinatesAreNegative(){
+    public void testValidateShouldValidateWhenCoordinatesAreNegative() {
         //when
         boolean isValid = validator.validate(VALID_NEGATIVE);
         //then
@@ -59,7 +59,7 @@ public class SphereValidatorTest {
     }
 
     @Test
-    public void testValidateShouldNotValidateWhenRadiusIsNegative(){
+    public void testValidateShouldNotValidateWhenRadiusIsNegative() {
         //when
         boolean isValid = validator.validate(NEGATIVE_RADIUS);
         //then
@@ -67,7 +67,7 @@ public class SphereValidatorTest {
     }
 
     @Test
-    public void testValidateShouldNotValidateWhenArgumentsAreNotNumbers(){
+    public void testValidateShouldNotValidateWhenArgumentsAreNotNumbers() {
         //when
         boolean isValid = validator.validate(INVALID_ARGUMENTS);
         //then
@@ -75,7 +75,7 @@ public class SphereValidatorTest {
     }
 
     @Test
-    public void testValidateShouldNotValidateWhenLessThanNecessaryArgumentsApplied(){
+    public void testValidateShouldNotValidateWhenLessThanNecessaryArgumentsApplied() {
         //when
         boolean isValid = validator.validate(NOT_ENOUGH_ARGUMENTS);
         //then
@@ -83,7 +83,7 @@ public class SphereValidatorTest {
     }
 
     @Test
-    public void testValidateShouldNotValidateWhenMoreThanNecessaryArgumentsApplied(){
+    public void testValidateShouldNotValidateWhenMoreThanNecessaryArgumentsApplied() {
         //when
         boolean isValid = validator.validate(TOO_MANY_ARGUMENTS);
         //then

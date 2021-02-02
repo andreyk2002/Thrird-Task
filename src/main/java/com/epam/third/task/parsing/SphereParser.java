@@ -4,7 +4,7 @@ import com.epam.third.task.entities.Sphere;
 
 public class SphereParser {
 
-    private final String DELIMITERS = " ";
+    private static final String DELIMITERS = " ";
 
     public Sphere parse(String string) {
         String[] data = string.split(DELIMITERS);

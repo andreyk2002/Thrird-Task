@@ -77,7 +77,7 @@ public class SphereLogicTest {
         //when
         double volume = logic.countVolume(sphere);
         //then
-        Assert.assertEquals(volume, expected, DELTA);
+        Assert.assertEquals(Double.compare(expected, volume), 0);
     }
 
     @Test
@@ -111,7 +111,7 @@ public class SphereLogicTest {
         //when
         double actual = logic.countSurfaceArea(sphere);
         //then
-        Assert.assertEquals(actual, expected, DELTA);
+        Assert.assertEquals(Double.doubleToLongBits(expected), Double.doubleToLongBits(actual));
     }
 
     @Test
@@ -177,7 +177,7 @@ public class SphereLogicTest {
         double y = -19;
         double z = -7;
         double radius = 1.1e52;
-        Sphere touchesSomething = new Sphere( radius, x, y, z);
+        Sphere touchesSomething = new Sphere(radius, x, y, z);
         //when
         boolean isTouches = logic.isTouchesCoordinatePlates(touchesSomething);
         //then
@@ -185,18 +185,18 @@ public class SphereLogicTest {
     }
 
     @Test
-    public void testCountVolumeRatioByCrossingPlaneWhenCenterBelongsToCrossingPane(){
+    public void testCountVolumeRatioByCrossingPlaneWhenCenterBelongsToCrossingPane() {
         //given
         Sphere sphere = new Sphere(CENTER, INTEGER_RADIUS);
         double expected = 1.;
         //when
         double actual = logic.countVolumeRatioByCrossingPlane(sphere, 0);
         //then
-        Assert.assertEquals(actual,expected,DELTA);
+        Assert.assertEquals(actual, expected, DELTA);
     }
 
     @Test
-    public void testCountVolumeRatioByCrossingPlaneWhenCrossingPanePointBelongsToSphere(){
+    public void testCountVolumeRatioByCrossingPlaneWhenCrossingPanePointBelongsToSphere() {
         //given
         double radius = 9;
         Sphere sphere = new Sphere(CENTER, radius);
@@ -208,11 +208,11 @@ public class SphereLogicTest {
         //when
         double actual = logic.countVolumeRatioByCrossingPlane(sphere, distanceFromCenter);
         //then
-        Assert.assertEquals(actual,expected,DELTA);
+        Assert.assertEquals(actual, expected, DELTA);
     }
 
     @Test
-    public void testCountVolumeRationByCrossingPlaneWhenCrossingPaneNotBelongsToSphere(){
+    public void testCountVolumeRationByCrossingPlaneWhenCrossingPaneNotBelongsToSphere() {
         //given
         double radius = 2;
         Sphere sphere = new Sphere(CENTER, radius);
@@ -221,6 +221,6 @@ public class SphereLogicTest {
         //when
         double actual = logic.countVolumeRatioByCrossingPlane(sphere, distanceFromCenter);
         //then
-        Assert.assertEquals(actual,expected);
+        Assert.assertEquals(actual, expected);
     }
 }
