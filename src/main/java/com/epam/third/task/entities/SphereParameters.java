@@ -1,11 +1,11 @@
 package com.epam.third.task.entities;
 
-public class SphereParams {
+public class SphereParameters {
 
     private double volume;
     private double area;
 
-    public SphereParams(double volume, double area) {
+    public SphereParameters(double volume, double area) {
         this.volume = volume;
         this.area = area;
     }
@@ -29,9 +29,9 @@ public class SphereParams {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof SphereParams)) return false;
+        if (!(o instanceof SphereParameters)) return false;
 
-        SphereParams params = (SphereParams) o;
+        SphereParameters params = (SphereParameters) o;
 
         if (Double.compare(params.volume, volume) != 0) return false;
         return Double.compare(params.area, area) == 0;
