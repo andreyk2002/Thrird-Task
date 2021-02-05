@@ -26,9 +26,9 @@ public class DataReaderTest {
 
     @Test
     public void testReadDataShouldReadWhenMultipleLinesFileApplied() throws DataException {
-        //then
-        List<String> actual = reader.readData(TEST_FILE);
         //when
+        List<String> actual = reader.readData(TEST_FILE);
+        //then
         List<String> expected = Arrays.asList("1 2 3 4", "2", "3f 5a");
         Assert.assertEquals(actual, expected);
     }
