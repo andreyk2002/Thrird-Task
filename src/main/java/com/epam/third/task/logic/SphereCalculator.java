@@ -40,7 +40,6 @@ public class SphereCalculator {
         return result;
     }
 
-    //two of tree points coordinates should match radius coordinates
     //formula : ratio = 4R^3/(3h * (R - 1/3 * h) ) - 1
     public double countVolumeRatioByCrossingPlane(Sphere sphere, double distanceFromCenter) {
         if (distanceFromCenter == 0) {
