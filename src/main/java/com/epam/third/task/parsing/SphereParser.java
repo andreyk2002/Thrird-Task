@@ -6,8 +6,8 @@ public class SphereParser {
 
     private static final String DELIMITERS = " ";
 
-    public Sphere parse(String string) {
-        String[] data = string.split(DELIMITERS);
+    public Sphere parse(String line) {
+        String[] data = line.split(DELIMITERS);
 
         double radius = Double.parseDouble(data[0]);
         double x = Double.parseDouble(data[1]);

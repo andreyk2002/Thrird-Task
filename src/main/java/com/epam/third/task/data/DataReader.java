@@ -29,10 +29,10 @@ public class DataReader {
         return result;
     }
 
-    private void closeResource(Closeable resource) throws DataException {
-        if (resource != null) {
+    private void closeResource(BufferedReader reader) throws DataException {
+        if (reader != null) {
             try {
-                resource.close();
+                reader.close();
             } catch (IOException e) {
                 LOGGER.error(e.getMessage(), e);
                 throw new DataException(e.getMessage(), e);

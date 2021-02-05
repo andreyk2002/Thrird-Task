@@ -2,26 +2,26 @@ package com.epam.third.task.entities;
 
 public class Point {
 
-    private final double X;
-    private final double Y;
-    private final double Z;
+    private final double x;
+    private final double y;
+    private final double z;
 
     public Point(double x, double y, double z) {
-        this.X = x;
-        this.Y = y;
-        this.Z = z;
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
     public double getX() {
-        return X;
+        return x;
     }
 
     public double getY() {
-        return Y;
+        return y;
     }
 
     public double getZ() {
-        return Z;
+        return z;
     }
 
     @Override
@@ -29,11 +29,11 @@ public class Point {
         final int prime = 31;
         int result = 1;
         long temp;
-        temp = Double.doubleToLongBits(X);
+        temp = Double.doubleToLongBits(x);
         result = prime * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(Y);
+        temp = Double.doubleToLongBits(y);
         result = prime * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(Z);
+        temp = Double.doubleToLongBits(z);
         result = prime * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
@@ -50,6 +50,6 @@ public class Point {
             return false;
         }
         Point other = (Point) obj;
-        return other.X == X && other.Y == Y && other.Z == Z;
+        return other.x == x && other.y == y && other.z == z;
     }
 }

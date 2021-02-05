@@ -7,11 +7,12 @@ import org.testng.annotations.Test;
 
 import static java.lang.Math.PI;
 
-public class SphereLogicTest {
+public class SphereCalculatorTest {
 
-    private final SphereLogic logic = new SphereLogic();
+    private final SphereCalculator logic = new SphereCalculator();
 
     private final static Point CENTER = new Point(6, 0, 0);
+    private final static Point CENTER_ZERO = new Point(0, 0, 0);
     private final static double DELTA = 0.01;
     private final static int INTEGER_RADIUS = 3;
     private final static double DOUBLE_RADIUS = 4.5;
@@ -49,7 +50,7 @@ public class SphereLogicTest {
     @Test
     public void testCountVolumeShouldCountWhenRadiusIsInteger() {
         //given
-        Sphere sphere = new Sphere(CENTER, INTEGER_RADIUS);
+        Sphere sphere = new Sphere(INTEGER_RADIUS, CENTER);
         double expected = PI * 36;
         //when
         double volume = logic.countVolume(sphere);
@@ -60,7 +61,7 @@ public class SphereLogicTest {
     @Test
     public void testCountVolumeShouldCountWhenRadiusIsDouble() {
         //given
-        Sphere sphere = new Sphere(CENTER, DOUBLE_RADIUS);
+        Sphere sphere = new Sphere(DOUBLE_RADIUS, CENTER);
         double expected = PI * 121.5;
         //when
         double volume = logic.countVolume(sphere);
@@ -68,22 +69,10 @@ public class SphereLogicTest {
         Assert.assertEquals(volume, expected, DELTA);
     }
 
-    @Test(enabled = false)
-    public void testCountVolumeShouldCountWhenRadiusIsVeryBig() {
-        //given
-        double bigRadius = 1.5e35;
-        Sphere sphere = new Sphere(CENTER, bigRadius);
-        double expected = 4.5e105 * PI;
-        //when
-        double volume = logic.countVolume(sphere);
-        //then
-        Assert.assertEquals(Double.compare(expected, volume), 0);
-    }
-
     @Test
     public void testCountSurfaceAreaShouldCountWhenRadiusIsInteger() {
         //given
-        Sphere sphere = new Sphere(CENTER, INTEGER_RADIUS);
+        Sphere sphere = new Sphere(INTEGER_RADIUS, CENTER);
         double expected = 36 * PI;
         //when
         double actual = logic.countSurfaceArea(sphere);
@@ -94,24 +83,12 @@ public class SphereLogicTest {
     @Test
     public void testCountSurfaceAreaShouldCountWhenRadiusIsDouble() {
         //given
-        Sphere sphere = new Sphere(CENTER, DOUBLE_RADIUS);
+        Sphere sphere = new Sphere(DOUBLE_RADIUS, CENTER);
         double expected = 81 * PI;
         //when
         double actual = logic.countSurfaceArea(sphere);
         //then
         Assert.assertEquals(actual, expected, DELTA);
-    }
-
-    @Test(enabled = false)
-    public void testCountSurfaceAreaShouldCountWhenRadiusIsVeryBig() {
-        //given
-        double bigRadius = 1.0e35;
-        Sphere sphere = new Sphere(CENTER, bigRadius);
-        double expected = 4.0e70 * PI;
-        //when
-        double actual = logic.countSurfaceArea(sphere);
-        //then
-        Assert.assertEquals(Double.doubleToLongBits(expected), Double.doubleToLongBits(actual));
     }
 
     @Test
@@ -171,23 +148,9 @@ public class SphereLogicTest {
     }
 
     @Test
-    public void testIsTouchesCoordinatePlatesShouldNotConfirmWhenRadiusIsVeryBig() {
-        //given
-        double x = -1.1e52;
-        double y = -19;
-        double z = -7;
-        double radius = 1.1e52;
-        Sphere touchesSomething = new Sphere(radius, x, y, z);
-        //when
-        boolean isTouches = logic.isTouchesCoordinatePlates(touchesSomething);
-        //then
-        Assert.assertTrue(isTouches);
-    }
-
-    @Test
     public void testCountVolumeRatioByCrossingPlaneWhenCenterBelongsToCrossingPane() {
         //given
-        Sphere sphere = new Sphere(CENTER, INTEGER_RADIUS);
+        Sphere sphere = new Sphere(INTEGER_RADIUS, CENTER);
         double expected = 1.;
         //when
         double actual = logic.countVolumeRatioByCrossingPlane(sphere, 0);
@@ -199,7 +162,7 @@ public class SphereLogicTest {
     public void testCountVolumeRatioByCrossingPlaneWhenCrossingPanePointBelongsToSphere() {
         //given
         double radius = 9;
-        Sphere sphere = new Sphere(CENTER, radius);
+        Sphere sphere = new Sphere(radius, CENTER);
         double distanceFromCenter = 3;
         double expected = 12.5;
         //R = 9; h = 3 => ratio = 4 * R^3 /3 * h^2(R - h/3) - 1
@@ -215,12 +178,50 @@ public class SphereLogicTest {
     public void testCountVolumeRationByCrossingPlaneWhenCrossingPaneNotBelongsToSphere() {
         //given
         double radius = 2;
-        Sphere sphere = new Sphere(CENTER, radius);
+        Sphere sphere = new Sphere(radius, CENTER);
         double distanceFromCenter = 4;
         double expected = Double.POSITIVE_INFINITY;
         //when
         double actual = logic.countVolumeRatioByCrossingPlane(sphere, distanceFromCenter);
         //then
         Assert.assertEquals(actual, expected);
+    }
+
+    @Test
+    public void testCountDistanceFromZeroShouldReturnZeroWhenCenterIsZero() {
+        //given
+        Sphere sphere = new Sphere(1, CENTER_ZERO);
+
+        //when
+        double actual = logic.countDistanceFromZero(sphere);
+
+        //then
+        Assert.assertEquals(actual, 0, DELTA);
+    }
+
+    @Test
+    public void testCountDistanceFromZeroShouldReturnZeroWhenCenterBelongsToSphere() {
+        //given
+        Point center = new Point(2, 2, 2);
+        Sphere sphere = new Sphere(10, CENTER);
+
+        //when
+        double actual = logic.countDistanceFromZero(sphere);
+
+        //then
+        Assert.assertEquals(actual, 0, DELTA);
+    }
+
+    @Test
+    public void testCountDistanceFromZeroShouldReturnDistanceWhenCenterOutOfSphere() {
+        //given
+        Point center = new Point(2, 2, 1);
+        Sphere sphere = new Sphere(1, center);
+
+        //when
+        double actual = logic.countDistanceFromZero(sphere);
+
+        //then
+        Assert.assertEquals(actual, 2, DELTA);
     }
 }

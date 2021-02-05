@@ -2,21 +2,45 @@ package com.epam.third.task.entities;
 
 public class Sphere {
 
+    private final int id;
+    private static int currentId = 0;
     private final Point center;
-    private final double radius;
+    private double radius;
 
-    public Sphere(Point center, double radius) {
+    public Sphere( double radius, Point center) {
         this.center = center;
         this.radius = radius;
+        currentId++;
+        this.id = currentId;
     }
 
     public Sphere(double radius, double x, double y, double z) {
-        this.center = new Point(x, y, z);
+        this(radius, new Point(x, y, z));
+    }
+
+    //setRadius
+    public void changeRadius(double radius) {
         this.radius = radius;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public Point getCenter() {
         return center;
+    }
+
+    public double getCenterX(){
+        return center.getX();
+    }
+
+    public double getCenterY(){
+        return center.getY();
+    }
+
+    public double getCenterZ(){
+        return center.getZ();
     }
 
     public double getRadius() {
@@ -41,4 +65,6 @@ public class Sphere {
         result = prime * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
+
+
 }
