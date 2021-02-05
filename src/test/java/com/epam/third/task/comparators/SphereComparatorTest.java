@@ -1,6 +1,5 @@
 package com.epam.third.task.comparators;
 
-import com.epam.third.task.entities.Point;
 import com.epam.third.task.entities.Sphere;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -8,7 +7,7 @@ import org.testng.annotations.Test;
 import java.util.Comparator;
 
 public abstract class SphereComparatorTest {
-    private Comparator<Sphere> sphereComparator = getComparator();
+    private final Comparator<Sphere> sphereComparator = getComparator();
     private final Sphere EVERYTHING_SMALLER = new Sphere(3,2,2,2);
     private final Sphere EVERYTHING_BIGGER = new Sphere(15, 10,10,10);
 

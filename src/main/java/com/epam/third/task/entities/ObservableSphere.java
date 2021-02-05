@@ -9,7 +9,7 @@ import java.util.List;
 public class ObservableSphere extends Sphere {
 
 
-    private final List<Observer> observerList = new ArrayList<>();
+    private final List<Observer> observers = new ArrayList<>();
 
     public ObservableSphere( double radius, Point center) {
         super(radius, center);
@@ -27,17 +27,17 @@ public class ObservableSphere extends Sphere {
     }
 
     public void attach(Observer observer) {
-        observerList.add(observer);
+        observers.add(observer);
         observer.addObservable(this);
     }
 
     public void detach(Observer observer) {
         observer.removeObservable(this);
-        observerList.remove(observer);
+        observers.remove(observer);
     }
 
     private void notifyObservers() {
-        for(Observer observer : observerList){
+        for(Observer observer : observers){
             observer.handleEvent(new SphereEvent(this));
         }
     }

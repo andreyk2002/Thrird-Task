@@ -21,9 +21,9 @@ public class SphereCalculatorTest {
     public void testIsSphereShouldReturnFalseWhenRadiusIsNegative() {
         //given
         double negativeRadius = -1;
-        //then
-        boolean isSphere = logic.isSphere(negativeRadius);
         //when
+        boolean isSphere = logic.isSphere(negativeRadius);
+        //then
         Assert.assertFalse(isSphere);
     }
 
@@ -31,9 +31,9 @@ public class SphereCalculatorTest {
     public void testIsSphereShouldReturnFalseWhenRadiusIsZero() {
         //given
         double zeroRadius = 0;
-        //then
-        boolean isSphere = logic.isSphere(zeroRadius);
         //when
+        boolean isSphere = logic.isSphere(zeroRadius);
+        //then
         Assert.assertFalse(isSphere);
     }
 
@@ -41,9 +41,9 @@ public class SphereCalculatorTest {
     public void testIsSphereShouldReturnTrueWhenRadiusIsPositive() {
         //given
         double positiveRadius = 1;
-        //then
-        boolean isSphere = logic.isSphere(positiveRadius);
         //when
+        boolean isSphere = logic.isSphere(positiveRadius);
+        //then
         Assert.assertTrue(isSphere);
     }
 

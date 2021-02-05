@@ -5,9 +5,9 @@ import com.epam.third.task.entities.Sphere;
 
 public class SphereCoordinateSpecification implements SphereSpecification {
 
-    private boolean xShouldBeNegative;
-    private boolean yShouldBeNegative;
-    private boolean zShouldBeNegative;
+    private final boolean xShouldBeNegative;
+    private final boolean yShouldBeNegative;
+    private final boolean zShouldBeNegative;
 
     public SphereCoordinateSpecification(boolean xShouldBeNegative,
                                          boolean yShouldBeNegative, boolean zShouldBeNegative) {
