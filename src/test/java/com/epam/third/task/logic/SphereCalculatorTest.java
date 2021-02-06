@@ -203,7 +203,7 @@ public class SphereCalculatorTest {
     public void testCountDistanceFromZeroShouldReturnZeroWhenCenterBelongsToSphere() {
         //given
         Point center = new Point(2, 2, 2);
-        Sphere sphere = new Sphere(10, CENTER);
+        Sphere sphere = new Sphere(10, center);
 
         //when
         double actual = calculator.countDistanceFromZero(sphere);
