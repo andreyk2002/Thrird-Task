@@ -9,7 +9,7 @@ import static java.lang.Math.PI;
 
 public class SphereCalculatorTest {
 
-    private final SphereCalculator logic = new SphereCalculator();
+    private final SphereCalculator calculator = new SphereCalculator();
 
     private final static Point CENTER = new Point(6, 0, 0);
     private final static Point CENTER_ZERO = new Point(0, 0, 0);
@@ -22,7 +22,7 @@ public class SphereCalculatorTest {
         //given
         double negativeRadius = -1;
         //when
-        boolean isSphere = logic.isSphere(negativeRadius);
+        boolean isSphere = calculator.isSphere(negativeRadius);
         //then
         Assert.assertFalse(isSphere);
     }
@@ -32,7 +32,7 @@ public class SphereCalculatorTest {
         //given
         double zeroRadius = 0;
         //when
-        boolean isSphere = logic.isSphere(zeroRadius);
+        boolean isSphere = calculator.isSphere(zeroRadius);
         //then
         Assert.assertFalse(isSphere);
     }
@@ -42,7 +42,7 @@ public class SphereCalculatorTest {
         //given
         double positiveRadius = 1;
         //when
-        boolean isSphere = logic.isSphere(positiveRadius);
+        boolean isSphere = calculator.isSphere(positiveRadius);
         //then
         Assert.assertTrue(isSphere);
     }
@@ -53,7 +53,7 @@ public class SphereCalculatorTest {
         Sphere sphere = new Sphere(INTEGER_RADIUS, CENTER);
         double expected = PI * 36;
         //when
-        double volume = logic.countVolume(sphere);
+        double volume = calculator.countVolume(sphere);
         //then
         Assert.assertEquals(volume, expected, DELTA);
     }
@@ -64,7 +64,7 @@ public class SphereCalculatorTest {
         Sphere sphere = new Sphere(DOUBLE_RADIUS, CENTER);
         double expected = PI * 121.5;
         //when
-        double volume = logic.countVolume(sphere);
+        double volume = calculator.countVolume(sphere);
         //then
         Assert.assertEquals(volume, expected, DELTA);
     }
@@ -75,7 +75,7 @@ public class SphereCalculatorTest {
         Sphere sphere = new Sphere(INTEGER_RADIUS, CENTER);
         double expected = 36 * PI;
         //when
-        double actual = logic.countSurfaceArea(sphere);
+        double actual = calculator.countSurfaceArea(sphere);
         //then
         Assert.assertEquals(actual, expected, DELTA);
     }
@@ -86,7 +86,7 @@ public class SphereCalculatorTest {
         Sphere sphere = new Sphere(DOUBLE_RADIUS, CENTER);
         double expected = 81 * PI;
         //when
-        double actual = logic.countSurfaceArea(sphere);
+        double actual = calculator.countSurfaceArea(sphere);
         //then
         Assert.assertEquals(actual, expected, DELTA);
     }
@@ -100,7 +100,7 @@ public class SphereCalculatorTest {
         double radius = 4;
         Sphere touchesOXY = new Sphere(radius, x, y, z);
         //when
-        boolean isTouches = logic.isTouchesCoordinatePlates(touchesOXY);
+        boolean isTouches = calculator.isTouchesCoordinatePlates(touchesOXY);
         //then
         Assert.assertTrue(isTouches);
     }
@@ -114,7 +114,7 @@ public class SphereCalculatorTest {
         double radius = 2;
         Sphere touchesOZY = new Sphere(radius, x, y, z);
         //when
-        boolean isTouches = logic.isTouchesCoordinatePlates(touchesOZY);
+        boolean isTouches = calculator.isTouchesCoordinatePlates(touchesOZY);
         //then
         Assert.assertTrue(isTouches);
     }
@@ -128,7 +128,7 @@ public class SphereCalculatorTest {
         double radius = 10;
         Sphere touchesOZX = new Sphere(radius, x, y, z);
         //when
-        boolean isTouches = logic.isTouchesCoordinatePlates(touchesOZX);
+        boolean isTouches = calculator.isTouchesCoordinatePlates(touchesOZX);
         //then
         Assert.assertTrue(isTouches);
     }
@@ -142,7 +142,7 @@ public class SphereCalculatorTest {
         double radius = 22;
         Sphere touchesSomething = new Sphere(radius, x, y, z);
         //when
-        boolean isTouches = logic.isTouchesCoordinatePlates(touchesSomething);
+        boolean isTouches = calculator.isTouchesCoordinatePlates(touchesSomething);
         //then
         Assert.assertFalse(isTouches);
     }
@@ -153,7 +153,7 @@ public class SphereCalculatorTest {
         Sphere sphere = new Sphere(INTEGER_RADIUS, CENTER);
         double expected = 1.;
         //when
-        double actual = logic.countVolumeRatioByCrossingPlane(sphere, 0);
+        double actual = calculator.countVolumeRatioByCrossingPlane(sphere, 0);
         //then
         Assert.assertEquals(actual, expected, DELTA);
     }
@@ -169,7 +169,7 @@ public class SphereCalculatorTest {
         //ratio = 4 * 9^3 / 3^3 / 8 - 1 = 12.5
 
         //when
-        double actual = logic.countVolumeRatioByCrossingPlane(sphere, distanceFromCenter);
+        double actual = calculator.countVolumeRatioByCrossingPlane(sphere, distanceFromCenter);
         //then
         Assert.assertEquals(actual, expected, DELTA);
     }
@@ -182,7 +182,7 @@ public class SphereCalculatorTest {
         double distanceFromCenter = 4;
         double expected = Double.POSITIVE_INFINITY;
         //when
-        double actual = logic.countVolumeRatioByCrossingPlane(sphere, distanceFromCenter);
+        double actual = calculator.countVolumeRatioByCrossingPlane(sphere, distanceFromCenter);
         //then
         Assert.assertEquals(actual, expected);
     }
@@ -193,7 +193,7 @@ public class SphereCalculatorTest {
         Sphere sphere = new Sphere(1, CENTER_ZERO);
 
         //when
-        double actual = logic.countDistanceFromZero(sphere);
+        double actual = calculator.countDistanceFromZero(sphere);
 
         //then
         Assert.assertEquals(actual, 0, DELTA);
@@ -206,7 +206,7 @@ public class SphereCalculatorTest {
         Sphere sphere = new Sphere(10, CENTER);
 
         //when
-        double actual = logic.countDistanceFromZero(sphere);
+        double actual = calculator.countDistanceFromZero(sphere);
 
         //then
         Assert.assertEquals(actual, 0, DELTA);
@@ -219,7 +219,7 @@ public class SphereCalculatorTest {
         Sphere sphere = new Sphere(1, center);
 
         //when
-        double actual = logic.countDistanceFromZero(sphere);
+        double actual = calculator.countDistanceFromZero(sphere);
 
         //then
         Assert.assertEquals(actual, 2, DELTA);

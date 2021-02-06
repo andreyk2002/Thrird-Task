@@ -1,7 +1,7 @@
 package com.epam.third.task.repository.specifications;
 
 import com.epam.third.task.entities.Point;
-import com.epam.third.task.entities.Sphere;
+import com.epam.third.task.entities.SphereWithId;
 
 public class SphereCoordinateSpecification implements SphereSpecification {
 
@@ -18,7 +18,7 @@ public class SphereCoordinateSpecification implements SphereSpecification {
 
 
     @Override
-    public boolean specified(Sphere sphere) {
+    public boolean specified(SphereWithId sphere) {
         Point center = sphere.getCenter();
         double x = center.getX();
         double y = center.getY();

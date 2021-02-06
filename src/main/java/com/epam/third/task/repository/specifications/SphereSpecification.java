@@ -1,8 +1,8 @@
 package com.epam.third.task.repository.specifications;
 
-import com.epam.third.task.entities.Sphere;
+import com.epam.third.task.entities.SphereWithId;
 
 public interface SphereSpecification {
 
-    boolean specified(Sphere sphere);
+    boolean specified(SphereWithId sphere);
 }

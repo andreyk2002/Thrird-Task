@@ -50,7 +50,8 @@ public class SphereCalculator {
             return Double.POSITIVE_INFINITY;
         }
         double ratio = Math.pow(radius, 3);
-        ratio *= 4. / 3.;
+        ratio *= 4;
+        ratio /= 3;
         ratio /= Math.pow(distanceFromCenter, 2);
         ratio /= radius - 1. / 3. * distanceFromCenter;
         ratio--;

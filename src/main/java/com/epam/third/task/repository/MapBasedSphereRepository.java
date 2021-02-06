@@ -1,28 +1,32 @@
 package com.epam.third.task.repository;
 
 import com.epam.third.task.entities.Sphere;
+import com.epam.third.task.entities.SphereWithId;
 import com.epam.third.task.repository.specifications.SphereSpecification;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-public class MapBasedSphereRepository implements SphereRepository{
+public class MapBasedSphereRepository implements SphereRepository {
 
-    private final Map<Integer, Sphere> spheres = new HashMap<>();
+    private final Map<Integer, SphereWithId> spheres = new HashMap<>();
 
     @Override
-    public void addSphere(Sphere sphere) {
+    public void addSphere(SphereWithId sphere) {
         int id = sphere.getId();
         spheres.put(id, sphere);
     }
 
     @Override
-    public void removeSphere(Sphere sphere) {
+    public void removeSphere(SphereWithId sphere) {
         int id = sphere.getId();
         spheres.remove(id);
     }
 
     @Override
-    public void updateSphere(Sphere sphere) {
+    public void updateSphere(SphereWithId sphere) {
         int id = sphere.getId();
         Sphere sphereToUpdate = spheres.get(id);
         double newRadius = sphere.getRadius();
@@ -32,11 +36,11 @@ public class MapBasedSphereRepository implements SphereRepository{
     @Override
     public List<Sphere> query(SphereSpecification specification) {
         List<Sphere> results = new ArrayList<>();
-        for(Sphere sphere : spheres.values()){
-            if(specification.specified(sphere)){
+        for (SphereWithId sphere : spheres.values()) {
+            if (specification.specified(sphere)) {
                 results.add(sphere);
             }
         }
-        return  results;
+        return results;
     }
 }

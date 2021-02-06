@@ -1,27 +1,27 @@
 package com.epam.third.task.entities;
 
 import com.epam.third.task.observer.Observer;
-import com.epam.third.task.observer.SphereEvent;
+import com.epam.third.task.observer.SphereStateChangeEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ObservableSphere extends Sphere {
+public class ObservableSphere extends SphereWithId {
 
 
     private final List<Observer> observers = new ArrayList<>();
 
-    public ObservableSphere( double radius, Point center) {
-        super(radius, center);
+    public ObservableSphere(int id, double radius, Point center) {
+        super(id, radius, center);
     }
 
-    public ObservableSphere(double radius, double x, double y, double z) {
-        super(radius, x, y, z);
+    public ObservableSphere(int id, double radius, double x, double y, double z) {
+        super(id, radius, x, y, z);
     }
 
 
     @Override
-    public void changeRadius(double radius){
+    public void changeRadius(double radius) {
         super.changeRadius(radius);
         notifyObservers();
     }
@@ -37,8 +37,26 @@ public class ObservableSphere extends Sphere {
     }
 
     private void notifyObservers() {
-        for(Observer observer : observers){
-            observer.handleEvent(new SphereEvent(this));
+        for (Observer observer : observers) {
+            observer.update(new SphereStateChangeEvent(this));
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ObservableSphere)) return false;
+        if (!super.equals(o)) return false;
+
+        ObservableSphere sphere = (ObservableSphere) o;
+
+        return observers.equals(sphere.observers);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + observers.hashCode();
+        return result;
     }
 }

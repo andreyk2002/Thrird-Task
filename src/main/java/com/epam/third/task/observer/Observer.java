@@ -3,13 +3,13 @@ package com.epam.third.task.observer;
 import com.epam.third.task.entities.ObservableSphere;
 
 
-public interface Observer{
+public interface Observer {
 
     void addObservable(ObservableSphere sphere);
 
     void removeObservable(ObservableSphere sphere);
 
-    void handleEvent(SphereEvent event);
+    void update(SphereStateChangeEvent event);
 
 
 }

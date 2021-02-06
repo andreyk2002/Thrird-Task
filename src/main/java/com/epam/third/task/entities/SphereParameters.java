@@ -3,11 +3,11 @@ package com.epam.third.task.entities;
 public class SphereParameters {
 
     private double volume;
-    private double area;
+    private double surfaceArea;
 
-    public SphereParameters(double volume, double area) {
+    public SphereParameters(double volume, double surfaceArea) {
         this.volume = volume;
-        this.area = area;
+        this.surfaceArea = surfaceArea;
     }
 
     public double getVolume() {
@@ -18,23 +18,29 @@ public class SphereParameters {
         this.volume = volume;
     }
 
-    public double getArea() {
-        return area;
+    public double getSurfaceArea() {
+        return surfaceArea;
     }
 
-    public void setArea(double area) {
-        this.area = area;
+    public void setSurfaceArea(double surfaceArea) {
+        this.surfaceArea = surfaceArea;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof SphereParameters)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof SphereParameters)) {
+            return false;
+        }
 
         SphereParameters params = (SphereParameters) o;
 
-        if (Double.compare(params.volume, volume) != 0) return false;
-        return Double.compare(params.area, area) == 0;
+        if (Double.compare(params.volume, volume) != 0) {
+            return false;
+        }
+        return Double.compare(params.surfaceArea, surfaceArea) == 0;
     }
 
     @Override
@@ -43,7 +49,7 @@ public class SphereParameters {
         long temp;
         temp = Double.doubleToLongBits(volume);
         result = (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(area);
+        temp = Double.doubleToLongBits(surfaceArea);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }

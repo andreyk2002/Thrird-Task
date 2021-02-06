@@ -1,17 +1,16 @@
 package com.epam.third.task.entities;
 
+import com.epam.third.task.logic.IdGenerator;
+
 public class Sphere {
 
-    private final int id;
-    private static int currentId = 0;
     private final Point center;
     private double radius;
+    private final IdGenerator generator = new IdGenerator();
 
-    public Sphere( double radius, Point center) {
+    public Sphere(double radius, Point center) {
         this.center = center;
         this.radius = radius;
-        currentId++;
-        this.id = currentId;
     }
 
     public Sphere(double radius, double x, double y, double z) {
@@ -21,10 +20,6 @@ public class Sphere {
     //setRadius
     public void changeRadius(double radius) {
         this.radius = radius;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public Point getCenter() {
@@ -49,8 +44,12 @@ public class Sphere {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Sphere)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Sphere)) {
+            return false;
+        }
         Sphere sphere = (Sphere) o;
         return Double.compare(sphere.radius, radius) == 0 && center.equals(sphere.center);
     }
@@ -65,6 +64,5 @@ public class Sphere {
         result = prime * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
-
 
 }

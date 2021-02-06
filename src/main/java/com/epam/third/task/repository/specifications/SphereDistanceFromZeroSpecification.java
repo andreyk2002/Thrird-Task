@@ -1,6 +1,6 @@
 package com.epam.third.task.repository.specifications;
 
-import com.epam.third.task.entities.Sphere;
+import com.epam.third.task.entities.SphereWithId;
 import com.epam.third.task.logic.SphereCalculator;
 
 public class SphereDistanceFromZeroSpecification extends SphereRangeSpecification {
@@ -10,7 +10,7 @@ public class SphereDistanceFromZeroSpecification extends SphereRangeSpecificatio
     }
 
     @Override
-    protected double getParameter(Sphere sphere) {
+    protected double getParameter(SphereWithId sphere) {
         SphereCalculator calculator = super.getCalculator();
         return calculator.countDistanceFromZero(sphere);
     }
